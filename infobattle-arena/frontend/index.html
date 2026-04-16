@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoBattle Arena - Битва знаний по информатике!</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Заголовок -->
+        <header class="game-header">
+            <h1>⚔️ InfoBattle Arena ⚔️</h1>
+            <p class="subtitle">Победи боссов знаниями по информатике!</p>
+        </header>
+
+        <!-- Экран выбора -->
+        <div id="start-screen" class="screen active">
+            <div class="panel">
+                <h2>🎮 Начать битву</h2>
+                <div class="form-group">
+                    <label for="player-name">Твоё имя:</label>
+                    <input type="text" id="player-name" placeholder="Введи своё имя" maxlength="20">
+                </div>
+                
+                <h3>Выберите босса:</h3>
+                <div id="boss-selection" class="boss-cards">
+                    <!-- Боссы будут загружены здесь -->
+                </div>
+                
+                <button id="start-battle-btn" class="btn btn-primary" disabled>⚔️ В БОЙ!</button>
+            </div>
+        </div>
+
+        <!-- Экран битвы -->
+        <div id="battle-screen" class="screen">
+            <div class="battle-area">
+                <!-- Прогресс бар босса -->
+                <div class="health-bar-container boss-health">
+                    <div class="health-label">
+                        <span id="boss-name">Босс</span>
+                        <span id="boss-hp">100/100</span>
+                    </div>
+                    <div class="health-bar">
+                        <div id="boss-health-fill" class="health-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- Изображение босса -->
+                <div class="boss-sprite">
+                    <div id="boss-image" class="boss-emoji">👾</div>
+                    <div id="boss-damage-effect" class="damage-effect"></div>
+                </div>
+
+                <!-- Вопрос -->
+                <div class="question-panel">
+                    <h3 id="question-text">Загрузка вопроса...</h3>
+                    <div id="options-container" class="options-grid">
+                        <!-- Варианты ответов -->
+                    </div>
+                </div>
+
+                <!-- Прогресс бар игрока -->
+                <div class="health-bar-container player-health">
+                    <div class="health-label">
+                        <span id="player-name-display">Игрок</span>
+                        <span id="player-hp">100/100</span>
+                    </div>
+                    <div class="health-bar">
+                        <div id="player-health-fill" class="health-fill player" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <!-- Счёт -->
+                <div class="score-display">
+                    <span>🏆 Очки: <strong id="score-value">0</strong></span>
+                </div>
+
+                <!-- Сообщение о результате -->
+                <div id="battle-message" class="battle-message"></div>
+            </div>
+        </div>
+
+        <!-- Экран результатов -->
+        <div id="result-screen" class="screen">
+            <div class="panel result-panel">
+                <h2 id="result-title">Победа!</h2>
+                <div id="result-emoji" class="result-emoji">🏆</div>
+                <p id="result-message">Босс повержен твоими знаниями!</p>
+                <div class="final-score">
+                    <h3>Твой счёт: <span id="final-score-value">0</span></h3>
+                </div>
+                <button id="play-again-btn" class="btn btn-primary">🔄 Сыграть снова</button>
+            </div>
+        </div>
+
+        <!-- Таблица лидеров и общий прогресс -->
+        <div class="leaderboard-section">
+            <div class="panel">
+                <h3>🏆 Таблица лидеров</h3>
+                <div id="leaderboard" class="leaderboard-list">
+                    <div class="loading">Загрузка...</div>
+                </div>
+                
+                <h3>🌍 Общий прогресс сообщества</h3>
+                <div class="community-progress">
+                    <div class="progress-info">
+                        <span>Всего очков: <strong id="total-score">0</strong></span>
+                        <span>Героев: <strong id="total-players">0</strong></span>
+                    </div>
+                    <div class="progress-bar-large">
+                        <div id="community-progress-fill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <p class="progress-text">Все вместе вы побеждаете боссов!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="/static/js/game.js"></script>
+</body>
+</html>
